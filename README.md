@@ -18,6 +18,10 @@ API
   
 You just created a application namespace. So how can you reach this namespace?
 
+    todo
+
+`Window` has a todo variable now! It's a global.
+
 ### Module Definition
 
 It looks like AMD definitions. Also you can use `component` identifier to define modules.
@@ -36,6 +40,11 @@ If module doesn't have any dependency you don't have to define dependency array.
       // something very core...
     });
 
+#### Module Events
+
+    todo.on('init:list.ui', function () {
+      // Do something cool when list.ui module initialized!
+    });
 
 ### Initializing Modules
 
