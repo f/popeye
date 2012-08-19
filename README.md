@@ -3,20 +3,85 @@ Popeye.js v0.1 (Alpha)
 
 A Backbone Power-up Kit for Backbone.js developers. Adds some features and makes development and code easier. In the background, there is Backbone.js's power. It also designed to seperate the logics with the module definitions.
 
+Getting Started
+---------------
+
+It makes your life simpler, easier and saves your time. You can spend your time with your family instead of coding lines of Backbone Code!
+
   - You can use `module` or `component` and `app` project global namespace system.
   - Module dependency control. Looks like AMD but simpler.
   - Easier `model`, `view` and `collection` definitions.
   - Model, Collection, View definition with construction.
-  
-API
----
+
+### A Traditional Backbone Code
+
+Here is a traditional Backbone code. Cool, but hard to read!
+
+    (function (module) {
+      
+      var apple,
+          apples,
+          appleView,
+          applesView;
+          
+      apple = this.apple = Backbone.Model.extend({
+        defaults: {
+          color: 'red'
+        }
+      });
+      
+      apples = this.apples = Backbone.Collection.extend({
+        model: apple
+      });
+      
+      appleView = this.appleView = Backbone.View.extend({
+        template: _.template($('script#apple').html()),
+        render: function () {
+          this.setElement(this.template(this.model.toJSON()));
+        }
+      });
+      
+      applesView = this.applesView = Backbone.View.extend({
+        el: 'ul#apples',
+        initialize: function () {
+          // something cool!
+        }
+      });
+      
+    }).call(todo.module('module')); // If you have a todo variable and module pattern somewhere!
+
+### A Popeye Version of The Same Code
+
+    app ('todo');
+    module ('module', function () {
+      
+      var apple,
+          apples;
+      
+      apple = this.apple = model ({
+        defaults: {
+          color: 'red'
+        }
+      });
+      
+      apples = this.apples = list (apple);
+      
+      this.views.apple = view (apple, $template('apple'));
+      
+      this.views.apples = view ('ul#apples', function () {
+        // something cool!
+      });
+    });
+
+## API
+
 ### Application Namespace
 
 
     app ('todo'); 
 
   
-You just created a application namespace. So how can you reach this namespace?
+You just created an application namespace. So how can you reach this namespace?
 
     todo
 
@@ -170,4 +235,3 @@ As you see you can use `Array` or `String` as parameter.
 
   - Nested model wrapper.
   - Documentation development.
-
