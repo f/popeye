@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="http://underscorejs.org/underscore.js"></script>
+	<script type="text/javascript" src="http://backbonejs.org/backbone.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="popeye.js"></script>
+	<script type="text/javascript">
+		app ('todo');
+		module ('module1', function () {
+
+			var apple,
+				apples;
+
+			apple = this.apple = model ();
+			apples = this.apples = list(apple);
+			//this.views.apple = view (apple, $template);
+			this.a = 1;
+		});
+		todo.on('init:module1', function () {
+			console.log('init!!!!!');
+		});
+		module ('module1', ['module2'], function (module2) {
+			console.log(module2.x);
+		});
+		module ('module2', function () {
+			var apple,
+				apples;
+
+			var module1 = module('module1');
+			console.log("m1", module1.a);
+
+			this.x = 1;
+			apple = this.apple2 = model ();
+			apples = this.apples2 = list(apple);
+
+			//appleView = view (apple, $template('test'));
+			//console.log(appleView({adi: 'fatih'}));
+		});
+	</script>
+</head>
+<body class=" axg module- module-x fatih  module-add    module-fatih module-module1">
+	
+</body>
+<script type="text/template" id="test">
+	Merhaba <%= renk %>
+</script>
+<script type="text/javascript">
+		//todo.list();
+		init('module1');
+</script>
+</html>
